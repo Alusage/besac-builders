@@ -1,0 +1,1 @@
+execute as @a if predicate besac_builders:casque_1 run say J'ai le casque !
