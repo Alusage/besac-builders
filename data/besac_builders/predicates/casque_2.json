@@ -5,7 +5,7 @@
       "condition": "minecraft:entity_scores",
       "entity": "this",
       "scores": {
-        "zone_construction": 1
+        "zone_construction": 2
       }
     }
   },
@@ -19,7 +19,7 @@
           "items": [
             "minecraft:leather_helmet"
           ],
-          "nbt": "{display:{Name:'{\"text\":\"Casque de chantier\",\"color\":\"yellow\",\"bold\":true,\"italic\":false}',Lore:['{\"text\":\"Zone de construction : ZONE 1\",\"color\":\"purple\",\"italic\":false,\"underlined\":true}'],color:16772608}}"
+          "nbt": "{display:{Name:'{\"text\":\"Casque de chantier\",\"color\":\"yellow\",\"bold\":true,\"italic\":false}',Lore:['{\"text\":\"Zone de construction : ZONE 2\",\"color\":\"purple\",\"italic\":false,\"underlined\":true}'],color:16772608}}"
         }
       }
     }
