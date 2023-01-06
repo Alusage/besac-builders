@@ -1,0 +1,1 @@
+execute at @s align xyz run summon minecraft:area_effect_cloud ~.5 ~ ~.5 {Duration:10,Tags:["portail","vers_survie"]}
