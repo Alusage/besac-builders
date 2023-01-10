@@ -1,1 +1,1 @@
-execute in besac_builders:creatif run tp @s ~ ~ ~
+execute in besac_builders:interieur run tp @s ~ ~ ~

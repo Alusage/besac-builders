@@ -1,7 +1,7 @@
 {
     "pack": {
       "pack_format": 10,
-      "description": "Gestion de zones de constructions pour Besançon dans Minecraft.\n\nDéveloppement : Luc Fouillard"
+      "description": "Gestion de zones de constructions, de permissions et plusieurs dimensions pour Besançon dans Minecraft.\n\nDéveloppement : Luc Fouillard"
     }
   }
   
