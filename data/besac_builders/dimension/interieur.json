@@ -5,6 +5,7 @@
     "settings": {
       "lakes": false,
       "features": false,
+      "biome": "besac_builders:besancon",
       "layers": [
         {
           "block": "minecraft:air",

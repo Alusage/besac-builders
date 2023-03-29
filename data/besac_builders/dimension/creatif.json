@@ -1,12 +1,18 @@
 {
-    "type": "minecraft:overworld",
-    "generator": {
-      "type": "minecraft:noise",
-      "settings": "besac_builders:creatif",
-      "biome_source": {
-        "type": "minecraft:multi_noise",
-        "preset": "minecraft:overworld"
-      }
+  "type": "besac_builders:creatif",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "lakes": false,
+      "features": false,
+      "biome": "besac_builders:besancon",
+      "layers": [
+        {
+          "block": "minecraft:white_concrete",
+          "height": 64
+        }
+      ],
+      "structure_overrides": []
     }
   }
-  
+}
