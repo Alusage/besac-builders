@@ -1,5 +1,3 @@
-#Forcer le gamemode dans ce monde
-gamemode adventure @s[gamemode=!adventure,tag=!besac_admin]
-
-# Tests pour savoir quel casque de chantier est porté ou non par le joueur
-execute as @s[tag=!anti_casque] run function besac_builders:monde_besancon/helmet_check
+# Tests pour savoir si le casque de chantier est porté ou non par le joueur puis forcer le gamemode correspondant
+execute as @s[predicate=besac_builders:is_helmet_off,tag=!besac_admin] run function besac_builders:monde_besancon/helmet_off
+execute as @s[predicate=besac_builders:is_helmet_on,tag=!besac_admin] run function besac_builders:monde_besancon/helmet_on

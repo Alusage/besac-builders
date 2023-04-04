@@ -1,1 +1,1 @@
-tag @e[type=area_effect_cloud,tag=portail,limit=1,sort=nearest] remove portail
+execute as @s[tag=besac_admin] run tag @e[type=area_effect_cloud,tag=portail,limit=1,sort=nearest] remove portail

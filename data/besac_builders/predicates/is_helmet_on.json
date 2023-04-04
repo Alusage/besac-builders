@@ -1,0 +1,15 @@
+{
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "type": "minecraft:player",
+    "equipment": {
+      "head": {
+        "items": [
+          "minecraft:leather_helmet"
+        ],
+        "nbt": "{display:{Name:'{\"text\":\"Casque de chantier\",\"color\":\"yellow\",\"bold\":true,\"italic\":false}',color:16772608}}"
+      }
+    }
+  }
+}
