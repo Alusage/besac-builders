@@ -1,3 +1,3 @@
 clear @s[tag=!besac_admin]
 effect clear @s[tag=!besac_admin]
-execute in overworld run tp @s ~ ~ ~
+tp @s @e[type=area_effect_cloud,tag=spawn_survival,limit=1]

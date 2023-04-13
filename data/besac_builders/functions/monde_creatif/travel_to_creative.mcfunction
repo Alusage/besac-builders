@@ -1,3 +1,3 @@
 clear @s[tag=!besac_admin]
 effect clear @s[tag=!besac_admin]
-execute in besac_builders:creatif run tp @s ~ ~ ~
+tp @s @e[type=area_effect_cloud,tag=spawn_creative,limit=1]

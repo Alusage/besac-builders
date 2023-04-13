@@ -1,2 +1,2 @@
 #Forcer le gamemode dans ce monde
-gamemode creative @s[gamemode=!creative,tag=!besac_admin]
+gamemode creative @a[gamemode=!creative,tag=!besac_admin]

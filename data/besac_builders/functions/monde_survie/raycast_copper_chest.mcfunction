@@ -1,0 +1,4 @@
+scoreboard players reset @a[scores={placed_copper_chest=1..}] placed_copper_chest
+execute if block ~ ~ ~ ironchests:copper_chest{CustomName:'{"text":"Coffre de récupération"}'} positioned ^ ^ ^ run summon minecraft:area_effect_cloud ~ ~ ~ {Duration:10,Tags:["coffre_personnel"]}
+scoreboard players operation @e[type=area_effect_cloud,tag=coffre_personnel,limit=1,sort=arbitrary,distance=..1] besac-builders_id_joueur = @s besac-builders_id_joueur
+execute if entity @p[distance=..7] unless block ~ ~ ~ ironchests:copper_chest positioned ^ ^ ^0.05 run function besac_builders:monde_survie/raycast_copper_chest
