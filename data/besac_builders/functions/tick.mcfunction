@@ -13,7 +13,7 @@ execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=partie_B] at @s if
 
 #Actualisation du contenu des transferts d'objets
 scoreboard players add @e[type=area_effect_cloud,tag=transfert_besancon] transfer_timer 1
-execute as @e[type=area_effect_cloud,tag=transfert_besancon,scores={transfer_timer=1200..},limit=1,sort=random] at @s run function besac_builders:monde_survie/transfer_items
+execute as @e[type=area_effect_cloud,tag=transfert_besancon,scores={transfer_timer=1000..},limit=1,sort=random] at @s run function besac_builders:monde_survie/transfer_items
 
 #Attribution d'un identifiant unique à chaque nouveau joueur
 execute as @a unless score @s besac-builders_id_joueur matches 0.. run function besac_builders:give_new_id
