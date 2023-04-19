@@ -4,3 +4,6 @@ scoreboard objectives add placed_hopper minecraft.used:minecraft.hopper
 scoreboard objectives add placed_copper_chest minecraft.used:ironchests.copper_chest
 scoreboard objectives add forge_attempt minecraft.custom:minecraft.interact_with_anvil
 scoreboard objectives add transfer_timer dummy
+scoreboard objectives add coordonnees_recuperateur_X dummy
+scoreboard objectives add coordonnees_recuperateur_Y dummy
+scoreboard objectives add coordonnees_recuperateur_Z dummy
