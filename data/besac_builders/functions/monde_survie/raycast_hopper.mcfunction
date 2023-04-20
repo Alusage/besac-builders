@@ -1,3 +1,3 @@
 scoreboard players reset @a[scores={placed_hopper=1..}] placed_hopper
-execute if block ~ ~ ~ hopper{CustomName:'{"text":"Transfert vers Besançon"}'} positioned ^ ^ ^ run execute align xyz run summon minecraft:area_effect_cloud ~0.5 ~ ~0.5 {Duration:10,Tags:["transfert_besancon"]}
+execute if block ~ ~ ~ hopper{CustomName:'{"text":"Transfert vers Besançon"}'} positioned ^ ^ ^ run execute align xyz unless entity @e[type=area_effect_cloud,tag=transfert_besancon,distance=..1] run summon minecraft:area_effect_cloud ~0.5 ~ ~0.5 {Duration:10,Tags:["transfert_besancon"]}
 execute if entity @p[distance=..10] unless block ~ ~ ~ hopper positioned ^ ^ ^0.05 run function besac_builders:monde_survie/raycast_hopper
