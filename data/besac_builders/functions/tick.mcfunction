@@ -4,12 +4,8 @@ execute as @e[type=area_effect_cloud,tag=portail] run data modify entity @s Age 
 #Réinitialisation de la durée de vie des area_effect_cloud servant de transfert d'objets
 execute as @e[type=area_effect_cloud,tag=transfert_besancon] at @s if block ~ ~ ~ hopper run data modify entity @s Age set value 0
 
-#Réinitialisation de la durée de vie des area_effect_cloud servant de coffres personnels
-execute as @e[type=area_effect_cloud,tag=coffre_personnel] at @s if block ~ ~ ~ ironchests:copper_chest run data modify entity @s Age set value 0
-
-#Réinitialisation de la durée de vie des area_effect_cloud servant de récupérateur d'inventaire
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=partie_A] at @s if block ~ ~ ~ chest if score @s besac-builders_id_joueur = @e[type=area_effect_cloud,tag=coffre_personnel,tag=partie_B,limit=1,sort=nearest] besac-builders_id_joueur run data modify entity @s Age set value 0
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=partie_B] at @s if block ~ ~ ~ chest if score @s besac-builders_id_joueur = @e[type=area_effect_cloud,tag=coffre_personnel,tag=partie_A,limit=1,sort=nearest] besac-builders_id_joueur run data modify entity @s Age set value 0
+#Réinitialisation de la durée de vie des area_effect_cloud servant de coffres de récupération
+execute as @e[type=area_effect_cloud,tag=coffre_recuperation,tag=!redondant] at @s if block ~ ~ ~ ironchests:copper_chest run data modify entity @s Age set value 0
 
 #Actualisation du contenu des transferts d'objets
 scoreboard players add @e[type=area_effect_cloud,tag=transfert_besancon] transfer_timer 1

@@ -1,28 +1,23 @@
-scoreboard players reset @a[scores={placed_copper_chest=1..}] placed_copper_chest
+#tellraw @s [{"text":"Tu possèdes déjà un coffre de récupération en ","color":"yellow"},{"score":{"name":"@s","objective":"coordonnees_recuperateur_X"},"color":"red"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Y"},"color":"green"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Z"},"color":"blue"},{"text":"\nDétruis-le si tu veux en poser un autre.","color":"yellow"}]
+#tellraw @s[predicate=besac_builders:dans_nether_ou_end] [{"text":"Tu ne peux pas poser de coffre de récupération\ndans le ","color":"yellow"},{"text":"Nether","color":"dark_red"},{"text":" ou l'","color":"yellow"},{"text":"End","color":"dark_blue"}]
 
-#Placer un coffre de récupération
-execute if block ~ ~ ~ ironchests:copper_chest{CustomName:'{"text":"Coffre de récupération"}'} positioned ^ ^ ^ run execute align xyz run summon minecraft:area_effect_cloud ~0.5 ~ ~0.5 {Duration:10,Tags:["coffre_personnel","nouveau"]}
-scoreboard players operation @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau] besac-builders_id_joueur = @s besac-builders_id_joueur
+scoreboard players reset @s placed_copper_chest
 tag @s add place_un_coffre
+scoreboard players operation #id_coffre_redondant besac-builders_id_joueur = @s besac-builders_id_joueur
+execute if block ~ ~ ~ ironchests:copper_chest{CustomName:'{"text":"Coffre de récupération"}'} align xyz unless entity @e[type=area_effect_cloud,tag=coffre_recuperation,distance=..1] run summon minecraft:area_effect_cloud ~0.5 ~ ~0.5 {Duration:10,Tags:["coffre_recuperation","nouveau"]}
+scoreboard players operation @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau] besac-builders_id_joueur = @s besac-builders_id_joueur
 
-#Détécter la pose d'un coffre alors qu'un autre existe
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau] at @s if score @s besac-builders_id_joueur = @e[type=area_effect_cloud,tag=coffre_personnel,tag=!nouveau,limit=1] besac-builders_id_joueur run execute as @p[tag=place_un_coffre] run tellraw @s [{"text":"Tu possèdes déjà un coffre de récupération en ","color":"yellow"},{"score":{"name":"@s","objective":"coordonnees_recuperateur_X"},"color":"red"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Y"},"color":"green"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Z"},"color":"blue"},{"text":"\nDétruis-le si tu veux en poser un autre.","color":"yellow"}]
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau] if score @s besac-builders_id_joueur = @e[type=area_effect_cloud,tag=coffre_personnel,tag=!nouveau,limit=1] besac-builders_id_joueur run tag @s add redondant
+#Empêcher la pose si un coffre existe déjà ou si le joueur est dans le Nether ou l'End, puis avertir ce dernier
+execute as @e[type=area_effect_cloud,tag=coffre_recuperation,tag=!nouveau,predicate=!besac_builders:dans_nether_ou_end] if score @s besac-builders_id_joueur = #id_coffre_redondant besac-builders_id_joueur run tag @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau] add redondant
+execute as @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,predicate=besac_builders:dans_nether_ou_end] run tag @s add redondant
+execute as @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,predicate=!besac_builders:dans_nether_ou_end,tag=redondant] if score @s besac-builders_id_joueur = #id_coffre_redondant besac-builders_id_joueur as @a[tag=place_un_coffre] run tellraw @s [{"text":"Tu possèdes déjà un coffre de récupération en ","color":"yellow"},{"score":{"name":"@s","objective":"coordonnees_recuperateur_X"},"color":"red"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Y"},"color":"green"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Z"},"color":"blue"},{"text":"\nDétruis-le si tu veux en poser un autre.","color":"yellow"}]
 
-#Détécter la pose d'un coffre dans le Nether ou l'End
-execute if score @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau,limit=1] besac-builders_id_joueur = @s besac-builders_id_joueur run tellraw @s[predicate=besac_builders:dans_nether_ou_end] [{"text":"Tu ne peux pas poser de coffre de récupération\ndans le ","color":"yellow"},{"text":"Nether","color":"dark_red"},{"text":" ou l'","color":"yellow"},{"text":"End","color":"dark_blue"}]
-tag @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau,predicate=besac_builders:dans_nether_ou_end] add redondant
+execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] store result score @s coordonnees_recuperateur_X run data get entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant,limit=1] Pos[0]
+execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] store result score @s coordonnees_recuperateur_Y run data get entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant,limit=1] Pos[1]
+execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] store result score @s coordonnees_recuperateur_Z run data get entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant,limit=1] Pos[2]
 
-#Récupérer les coordonnées du coffre et marquer le chunk comme important
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau,tag=!redondant] at @s store result score @p[tag=place_un_coffre] coordonnees_recuperateur_X run data get entity @s Pos[0]
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau,tag=!redondant] at @s store result score @p[tag=place_un_coffre] coordonnees_recuperateur_Y run data get entity @s Pos[1]
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau,tag=!redondant] at @s store result score @p[tag=place_un_coffre] coordonnees_recuperateur_Z run data get entity @s Pos[2]
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau,tag=!redondant] at @s run forceload add ~ ~
-
-#Terminer le raycast et clore la fonction, ou pas
-tag @e[type=area_effect_cloud,tag=coffre_personnel,tag=nouveau] remove nouveau
-tag @a remove place_un_coffre
+execute at @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] run forceload add ~ ~
+tag @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau] remove nouveau
+scoreboard players reset #id_coffre_redondant
+tag @s remove place_un_coffre
 execute if entity @p[distance=..10] unless block ~ ~ ~ ironchests:copper_chest positioned ^ ^ ^0.05 run function besac_builders:monde_survie/raycast_copper_chest
-
-#Détruire les coffres détéctés comme redondants
-execute as @e[type=area_effect_cloud,tag=coffre_personnel,tag=redondant] at @s run setblock ~ ~ ~ air destroy
