@@ -1,6 +1,3 @@
-#tellraw @s [{"text":"Tu possèdes déjà un coffre de récupération en ","color":"yellow"},{"score":{"name":"@s","objective":"coordonnees_recuperateur_X"},"color":"red"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Y"},"color":"green"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Z"},"color":"blue"},{"text":"\nDétruis-le si tu veux en poser un autre.","color":"yellow"}]
-#tellraw @s[predicate=besac_builders:dans_nether_ou_end] [{"text":"Tu ne peux pas poser de coffre de récupération\ndans le ","color":"yellow"},{"text":"Nether","color":"dark_red"},{"text":" ou l'","color":"yellow"},{"text":"End","color":"dark_blue"}]
-
 scoreboard players reset @s placed_copper_chest
 tag @s add place_un_coffre
 scoreboard players operation #id_coffre_redondant besac-builders_id_joueur = @s besac-builders_id_joueur
