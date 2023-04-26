@@ -7,3 +7,4 @@ scoreboard objectives add transfer_timer dummy
 scoreboard objectives add coordonnees_recuperateur_X dummy
 scoreboard objectives add coordonnees_recuperateur_Y dummy
 scoreboard objectives add coordonnees_recuperateur_Z dummy
+scoreboard objectives add donnees dummy

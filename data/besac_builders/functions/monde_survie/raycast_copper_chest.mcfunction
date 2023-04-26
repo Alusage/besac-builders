@@ -13,6 +13,7 @@ execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,
 execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] store result score @s coordonnees_recuperateur_X run data get entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant,limit=1] Pos[0]
 execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] store result score @s coordonnees_recuperateur_Y run data get entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant,limit=1] Pos[1]
 execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] store result score @s coordonnees_recuperateur_Z run data get entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant,limit=1] Pos[2]
+execute if entity @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] run tellraw @s [{"text":"Coffre de récupération placé en ","color":"yellow"},{"score":{"name":"@s","objective":"coordonnees_recuperateur_X"},"color":"red"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Y"},"color":"green"},"/",{"score":{"name":"@s","objective":"coordonnees_recuperateur_Z"},"color":"blue"}]
 
 execute at @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau,tag=!redondant] run forceload add ~ ~
 tag @e[type=area_effect_cloud,tag=coffre_recuperation,tag=nouveau] remove nouveau
